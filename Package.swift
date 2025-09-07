@@ -5,21 +5,21 @@ import PackageDescription
 
 let package = Package(
   name: "libaom",
-  platforms: [.iOS(.v11), .macOS(.v12), .macCatalyst(.v14), .watchOS(.v5), .tvOS(.v11)],
+  platforms: [.iOS(.v11), .macOS(.v12), .macCatalyst(.v14), .tvOS(.v11)],
   products: [
     .library(
       name: "libaom",
-      targets: ["libaom"]),
+      targets: ["libaom", "Clibaom"]),
   ],
   dependencies: [],
   targets: [
-    .target(
-      name: "libaom",
-      dependencies: ["libaomBinary"],
-      path: "Sources/libaom",
-      publicHeadersPath: "include"),
     .binaryTarget(
-      name: "libaomBinary",
+      name: "libaom",
       path: "Sources/libaom.xcframework"),
+    .target(
+      name: "Clibaom",
+      path: "Sources/Clibaom",
+      publicHeadersPath: "include"
+    )
   ]
 )
