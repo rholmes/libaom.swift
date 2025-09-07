@@ -4,20 +4,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "libaom",
-    platforms: [.iOS(.v11), .macOS(.v12), .macCatalyst(.v14), .watchOS(.v5), .tvOS(.v11)],
-    products: [
-        .library(
-            name: "libaom",
-            targets: ["libaom"]),
-    ],
-    dependencies: [],
-    targets: [
-        .binaryTarget(
-            name: "libaom",
-            path: "Sources/libaom/libaom.xcframework"),
-        .testTarget(
-            name: "libaom.swiftTests",
-            dependencies: ["libaom"]),
-    ]
+  name: "libaom",
+  platforms: [.iOS(.v11), .macOS(.v12), .macCatalyst(.v14), .watchOS(.v5), .tvOS(.v11)],
+  products: [
+    .library(
+      name: "libaom",
+      targets: ["libaom"]),
+  ],
+  dependencies: [],
+  targets: [
+    .target(
+      name: "libaom",
+      dependencies: ["libaomBinary"],
+      path: "Sources/libaom",
+      publicHeadersPath: "include"),
+    .binaryTarget(
+      name: "libaomBinary",
+      path: "Sources/libaom.xcframework"),
+  ]
 )
